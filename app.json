@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "lifting-wip",
-    "slug": "lifting-wip",
+    "name": "freeweight",
+    "slug": "freeweight",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
