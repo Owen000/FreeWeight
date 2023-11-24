@@ -4,7 +4,7 @@ import { View, Text, StyleSheet } from 'react-native';
 const HomeScreen = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Home</Text>
+      <Text style={styles.text} accessibilityLabel="Home Screen Text">Home</Text>
     </View>
   );
 };
