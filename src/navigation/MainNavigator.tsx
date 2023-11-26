@@ -1,16 +1,20 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, Platform } from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import HomeScreen from '../screens/HomeScreen';
 import StatsScreen from '../screens/StatsScreen';
 import SettingsScreen from '../screens/SettingsScreen';
-import HomeIcon from '../assets/svgs/HomeIcon.tsx';
-import SettingsIcon from '../assets/svgs/SettingsIcon.tsx';
-import StatsIcon from '../assets/svgs/StatsIcon.tsx';
+import HomeIcon from '../assets/svgs/HomeIcon';
+import SettingsIcon from '../assets/svgs/SettingsIcon';
+import StatsIcon from '../assets/svgs/StatsIcon';
 
 const Tab = createMaterialTopTabNavigator();
 
 const MainNavigator = () => {
+  const insets = useSafeAreaInsets();
+  const tabBarPaddingBottom = Platform.OS === 'ios' ? insets.bottom : 0;
+
   const iconSize = {
     width: 26,
     height: 26,
@@ -59,7 +63,11 @@ const MainNavigator = () => {
           textTransform: 'none',
         },
         tabBarStyle: {
-          backgroundColor: '#FCFCFC',
+          backgroundColor: '#F5F5F5',
+          height: 'auto',
+          paddingBottom: tabBarPaddingBottom,
+          borderTopWidth: 1,
+          borderTopColor: '#B3B3B3',
         },
         tabBarIndicatorStyle: {
           height: 0,

@@ -1,9 +1,9 @@
+// App.tsx
 import React, { useEffect } from 'react';
-import { SafeAreaView, StyleSheet } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
-import dbService from './services/dbService.tsx';
-
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { NavigationContainer } from '@react-navigation/native';
+import dbService from './services/dbService';
 import MainNavigator from './navigation/MainNavigator';
 
 export default function App() {
@@ -21,19 +21,12 @@ export default function App() {
   }, []);
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaProvider>
       <NavigationContainer>
+        <StatusBar style="auto" />
         <MainNavigator />
       </NavigationContainer>
-      <StatusBar style="auto" />
-    </SafeAreaView>
+    </SafeAreaProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-});
 
