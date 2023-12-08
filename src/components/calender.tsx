@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
 import { Calendar } from 'react-native-calendars';
+import LeftArrow from '../assets/svgs/LeftArrow';
+import RightArrow from '../assets/svgs/RightArrow';
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -16,16 +18,17 @@ const CalendarWrapper = () => {
 
   const renderCustomHeader = () => {
     const monthName = currentDate.toLocaleString('default', { month: 'long' });
-
     return (
       <View style={styles.customHeader}>
         <Text style={styles.monthText}>{monthName}</Text>
-        <TouchableOpacity onPress={() => changeMonth(-1)} style={styles.arrowButton}>
-          <Text style={styles.arrowText}>{'<'}</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => changeMonth(1)} style={styles.arrowButton}>
-          <Text style={styles.arrowText}>{'>'}</Text>
-        </TouchableOpacity>
+        <View style={styles.arrowContainer}>
+          <TouchableOpacity onPress={() => changeMonth(-1)} style={styles.arrowButton}>
+            <LeftArrow />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => changeMonth(1)} style={styles.arrowButton}>
+            <RightArrow />
+          </TouchableOpacity>
+        </View>
       </View>
     );
   };
@@ -33,7 +36,6 @@ const CalendarWrapper = () => {
   return (
     <View style={styles.calendarContainer}>
       <Calendar
-        // The key prop is used here to force a re-render
         key={currentDate.getMonth().toString() + currentDate.getFullYear().toString()}
         current={currentDate.toISOString().split('T')[0]}
         theme={{
@@ -60,20 +62,21 @@ const styles = StyleSheet.create({
   },
   customHeader: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
     alignItems: 'center',
     padding: 10,
   },
   monthText: {
     fontWeight: 'bold',
     fontSize: 18,
+    flex: 1,
+    textAlign: 'left',
+    marginTop: -7,
+  },
+  arrowContainer: {
+    flexDirection: 'row',
   },
   arrowButton: {
     padding: 10,
-  },
-  arrowText: {
-    fontSize: 18,
-    fontWeight: 'bold',
   },
 });
 

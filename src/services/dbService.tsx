@@ -1,5 +1,3 @@
-// dbService.tsx
-
 import * as SQLite from 'expo-sqlite';
 import { WebSQLDatabase } from 'expo-sqlite';
 
